@@ -12,7 +12,7 @@ It's easy to add new sites, pages and page objects
     - default_page = The landing page of the app, name can be personal preference but will be referenced in further stages
     - dynamic_url_contains = Partial text of a dynamic url, None if App doesn't have dynamic pages
     - dynamic_page_name = Name reference for dynamic page, personal preference but will be referenced in further stages
-    - In the below example, "ExampleApp" in get_variables() is the ${target_app} this variable can be set at command line e.g. robot -d reports -v target_app:ChallengingDom -t "My Test Case" .
+    - In the below example, "ExampleApp" in get_variables() is the ${target_app} this variable can be set at command line e.g. robot -d reports -v target_app:ExampleApp -t "My Test Case" .
 
 ```
 app3 = {
@@ -30,10 +30,11 @@ def get_variables(arg):
         return app3
 ```
 
-## Register Urls
+## Register Urls (Settings\UrlRegistry.yaml)
 
     - SiteUrls = Takes target app name as key and main url as value
-    - UrlsToPages = Maps page urls to a page name, page names can be personal preference but will be referenced in further stages. each url key/value should be entered under target app name as below:
+    - UrlsToPages = Maps page urls to a page name, page names can be personal preference but will be referenced in further stages. 
+    Each url key/value should be entered under target app name as below:
 
 ```
 SiteUrls:
@@ -46,4 +47,36 @@ UrlsToPages:
     https://www.saucedemo.com/inventory.html: ProductsPage
   ChallengingDom: 
     http://the-internet.herokuapp.com/challenging_dom: MainPage
+  ExampleApp:
+    https://www.example_app.com/example_page: ExamplePage
+    https://www.example_app.com/hello_world.html: AnotherExamplePage
 ```
+
+## Register Users If Applicable (Settings\UserRegistry.yaml)
+
+```
+UserLogins:
+  SwagLabs:
+    Default:
+      UserName: standard_user
+      Password: secret_sauce
+    Locked: 
+      UserName: locked_out_user
+      Password: secret_sauce
+    Problem:
+      UserName: problem_user
+      Password: secret_sauce
+    Glitched:
+      UserName: performance_glitch_user
+      Password: secret_sauce 
+  ExampleApp:
+    Default:
+      UserName: example_user
+      Password: example_password 
+
+```
+
+## Register pages (PO\PageRegistry\_ExampleAppVariables.robot)
+
+Add a file e.g. _ExampleAppVariables.robot to the PageRegistry - This will contain references to yaml files (Page Object and Definition files).
+Note the name of the file is important, it should be prefixed with underscore followed by the target app name and suffixed with "Variables" e.g. "_${target_app}Variables.robot"
