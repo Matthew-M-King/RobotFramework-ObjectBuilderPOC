@@ -1,8 +1,9 @@
 - [Robot Framework Object Builder POC](#robot-framework-object-builder-poc)
-  - [Register an App in the AppRegistry.py file](#register-an-app-in-the-appregistrypy-file)
-  - [Register Urls (Settings\UrlRegistry.yaml)](#register-urls-settingsurlregistryyaml)
-  - [Register Users If Applicable (Settings\UserRegistry.yaml)](#register-users-if-applicable-settingsuserregistryyaml)
-  - [Register pages (PO\PageRegistry\_ExampleAppVariables.robot)](#register-pages-popageregistry_exampleappvariablesrobot)
+  - [Core Registry Structure](#core-registry-structure)
+  - [Register an App](#register-an-app)
+  - [Register Urls](#register-urls)
+  - [Register Users If Applicable](#register-users-if-applicable)
+  - [Register Pages](#register-pages)
 
 
 
@@ -11,9 +12,44 @@
 This project demonstrates a Page Object builder approach
 enabling easy ability to add new page element locators and maintain existing locators. It's also possible to add element definitions which provides the paramters for asserting given elements within the app under test. It's easy to add new sites, pages and page objects
 
-## Register an App in the AppRegistry.py file
+## Core Registry Structure
 
-| variable | Description |
+```
+└───Resources
+│   └───Settings
+│   │   │   AppRegistry.py
+│   │   │   UrlRegistry.yaml
+│   │   │   UserRegistry.yaml
+│   │
+│   └───PO
+│       └───DefinitionRegistry
+│       │   └───ChallengingDom
+│       │   │   │   MainPage.yaml 
+│       │   │   
+│       │   └───SwagLabs
+│       │       │   LoginPage.yaml
+│       │       │   ProductsPage.yaml
+│       │   
+│       └───ObjectRegistry
+│       │   └───ChallengingDom
+│       │   │   │   MainPage.yaml 
+│       │   │   
+│       │   └───SwagLabs
+│       │       │   LoginPage.yaml
+│       │       │   ProductsPage.yaml
+│       │
+│       └───PageRegistry
+│       │   │   _ChallengingDomVariables.robot
+│       │   │   _SwagLabsVariables.robot
+
+```
+
+
+## Register an App
+
+`\\Settings\AppRegistry.py`
+
+| Variable | Description |
 | ----------- | ----------- |
 | app3 | Dictionary containing the setting variables for core app values |
 | default_page | The landing page of the app, name can be personal preference but will be referenced in further stages |
@@ -38,7 +74,8 @@ def get_variables(arg):
         return app3
 ```
 
-## Register Urls (Settings\UrlRegistry.yaml)
+## Register Urls
+`\\Settings\UrlRegistry.yaml.py`
 
 | Property | Description |
 | ----------- | ----------- |
@@ -63,7 +100,8 @@ UrlsToPages:
     https://www.example_app.com/hello_world.html: AnotherExamplePage
 ```
 
-## Register Users If Applicable (Settings\UserRegistry.yaml)
+## Register Users If Applicable
+`\\Settings\UserRegistry.yaml`
 
 For registering new users - first add the target app under "UserLogins" e.g. "ExampleApp:" Now under the target app, add a login type such as "Default", "Locked", "Invalid" etc. The user names and passwords will go under the user types as per the example below.
 
@@ -89,7 +127,8 @@ UserLogins:
 
 ```
 
-## Register pages (PO\PageRegistry\_ExampleAppVariables.robot)
+## Register Pages
+`\\PO\PageRegistry\_ExampleAppVariables.robot`
 
 Add a file e.g. \_ExampleAppVariables.robot to the PageRegistry - This will contain references to yaml files (Page Object and Definition files).
 Note the name of the file is important, it should be prefixed with underscore followed by the target app name and suffixed with "Variables" e.g. "_${target_app}Variables.robot"
