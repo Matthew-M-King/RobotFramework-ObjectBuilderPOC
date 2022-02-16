@@ -1,0 +1,26 @@
+MainPage_Objects:
+  MainContent:
+    LocatorStrategy: WithAttribute
+    ElementType: div
+    Attribute: id
+    Name: content
+    Text: null
+  MainTitle:
+    LocatorStrategy: ParentReferenceWithType
+    ParentReference: MainContent
+    ElementType: h3
+    Assert: False 
+    Text: null
+  MainTable:
+    LocatorStrategy: ParentReferenceWithType
+    ParentReference: MainContent
+    ElementType: table
+    Assert: False 
+    Text: null
+  MainButtons:
+    LocatorStrategy: ParentReferenceWithContainsAttribute
+    ParentReference: MainContent
+    ElementType: a
+    Attribute: class
+    Name: button
+    Text: null

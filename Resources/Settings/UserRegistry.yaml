@@ -1,0 +1,14 @@
+UserLogins:
+  SwagLabs:
+    Default:
+      UserName: standard_user
+      Password: secret_sauce
+    Locked: 
+      UserName: locked_out_user
+      Password: secret_sauce
+    Problem:
+      UserName: problem_user
+      Password: secret_sauce
+    Glitched:
+      UserName: performance_glitch_user
+      Password: secret_sauce 

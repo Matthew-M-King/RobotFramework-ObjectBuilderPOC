@@ -1,0 +1,89 @@
+MainPage_Definitions:
+  MainTable:
+    ElementCountShouldBe: 1
+    TableContent:
+      Columns:
+        Col1:
+          ColumnNo: 1
+          HeaderText: Lorem
+          Rows:
+            - Iuvaret0
+            - Iuvaret1
+            - Iuvaret2
+            - Iuvaret3
+            - Iuvaret4
+            - Iuvaret5
+            - Iuvaret6
+            - Iuvaret7
+            - Iuvaret8
+            - Iuvaret9
+        Col2:
+          ColumnNo: 2
+          HeaderText: Ipsum
+          Rows: 
+            - Apeirian0
+            - Apeirian1
+            - Apeirian2
+            - Apeirian3
+            - Apeirian4
+            - Apeirian5
+            - Apeirian6
+            - Apeirian7
+            - Apeirian8
+            - Apeirian9
+        Col3:
+          ColumnNo: 3
+          HeaderText: Dolor
+          Rows: 
+            - Adipisci0
+            - Adipisci1
+            - Adipisci2
+            - Adipisci3
+            - Adipisci4
+            - Adipisci5
+            - Adipisci6
+            - Adipisci7
+            - Adipisci8
+            - Adipisci9
+        Col4:
+          ColumnNo: 4
+          HeaderText: Sit
+          Rows: 
+            - Definiebas0
+            - Definiebas1
+            - Definiebas2
+            - Definiebas3
+            - Definiebas4
+            - Definiebas5
+            - Definiebas6
+            - Definiebas7
+            - Definiebas8
+            - Definiebas9
+        Col5:
+          ColumnNo: 5
+          HeaderText: Amet
+          Rows: 
+            - Consequuntur0
+            - Consequuntur1
+            - Consequuntur2
+            - Consequuntur3
+            - Consequuntur4
+            - Consequuntur5
+            - Consequuntur6
+            - Consequuntur7
+            - Consequuntur8
+            - Consequuntur9
+        Col6:
+          ColumnNo: 6
+          HeaderText: Diceret
+          Rows: 
+            - Phaedrum0
+            - Phaedrum1
+            - Phaedrum2
+            - Phaedrum3
+            - Phaedrum4
+            - Phaedrum5
+            - Phaedrum6
+            - Phaedrum7
+            - Phaedrum8
+            - Phaedrum9

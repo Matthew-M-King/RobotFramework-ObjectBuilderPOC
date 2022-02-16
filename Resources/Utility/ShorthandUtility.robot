@@ -8,6 +8,19 @@
     Return From Keyword If    "${variable}"!="${EMPTY}" and "${variable}"!="${NONE}"    ${variable}
     Run Keyword And Return    ${keyword}    @{args}    &{kwargs}
 
+Key->
+    [Documentation]    Runs given keyword if dictionary key exists
+    ...    ${example_id}    key->    ${example_id}    Get Default Example Id
+    [Arguments]    ${dict}   ${key}   ${keyword}    @{args}    &{kwargs}
+    ${is_key}  Run Keyword And Return Status   Dictionary Should Contain Key   ${dict}  ${key}
+    Return From Keyword If    not ${is_key}
+    Run Keyword And Return    ${keyword}    @{args}    &{kwargs}
+
+Is Key?
+    [Documentation]    Returns True if key found in dictionary
+    [Arguments]    ${dict}   ${key}
+    Run Keyword And Return  Run Keyword And Return Status   Dictionary Should Contain Key   ${dict}  ${key}
+
 ?>
     [Documentation]    Short-hand syntax for:    Run Keyword If    "${variable}"!="${EMPTY}"
     ...    Does not work, if the keyword to be called is actually 'Run Keywords'.

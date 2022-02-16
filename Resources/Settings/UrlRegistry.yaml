@@ -1,0 +1,9 @@
+SiteUrls:
+  ChallengingDom: http://the-internet.herokuapp.com/challenging_dom
+  SwagLabs: https://www.saucedemo.com/
+UrlsToPages:
+  SwagLabs:
+    https://www.saucedemo.com/: LoginPage
+    https://www.saucedemo.com/inventory.html: ProductsPage
+  ChallengingDom: 
+    http://the-internet.herokuapp.com/challenging_dom: MainPage
