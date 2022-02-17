@@ -35,3 +35,9 @@ the "${table}" table should contain correct content
 
 the following option should be selected in list:
     Register Table Keyword  PO: List: Assert Active Option  Option=value  List=target_element
+
+the "${target_elements}" should be sorted high to low ${value_type}
+    PO: Common: Assert Element Group Sort Order  ${target_elements}  HighToLow${value_type}
+
+the "${target_elements}" should be sorted low to high ${value_type}
+    PO: Common: Assert Element Group Sort Order  ${target_elements}  LowToHigh${value_type}
