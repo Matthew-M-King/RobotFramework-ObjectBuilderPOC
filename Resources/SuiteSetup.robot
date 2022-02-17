@@ -17,4 +17,4 @@ Begin Suite With ${user_type} User
     Login App  ${user_type}
     
 Teardown Suite
-    Close Browser
+    Close All Browsers

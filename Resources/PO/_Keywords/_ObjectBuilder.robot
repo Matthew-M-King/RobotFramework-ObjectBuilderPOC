@@ -13,6 +13,7 @@ Build Locator
     ...   XPathLookup
     ...   WithAttribute
     ...   WithText
+    ...   SelectFromGroupByCSSProperty
     [Arguments]  ${target_element}  ${extension}=${EMPTY}  ${page}=${NONE}
     
     # Get the current page as we will use it in the yaml lookup
@@ -27,7 +28,7 @@ Build Locator
     END
 
     # Decide locator strategy to build based on yaml properties and run keyword
-    Run Keyword And Return  Run Keyword  Build Locator: ${locator_strategy}   ${properties}  ${page}  ${extension}
+    ${locator}  Run Keyword  Build Locator: ${locator_strategy}   ${properties}  ${page}  ${extension}
     [Return]   ${locator}
     
 Build Locator: ParentReference

@@ -195,12 +195,15 @@ LoginPage_Objects:
 
 | LocatorStrategy | Description | Example |
 | ----------- | ----------- | ----------- |
-| ParentReferenceWithXpathLookup | Reference a parent element as prefix - child locator directly added as xpath |
-| ParentReferenceWithContainsAttribute | Reference a parent element as prefix - child locator built with contains attribute |
-| ParentReferenceWithType | Reference a parent element as prefix - child is simply an element type |
-| ParentReferenceWithAttribute | Reference a parent element as prefix - child locator built with attribute |
-| ParentReferenceWithText | Reference a parent element as prefix - child locator built with expected text |
-| XPathLookup | direct xpath lookup |
-| WithAttribute | built with attribute |
-| WithText | built with expected text |
-| WithContainsAttribute | built with contains attribute |
+| ParentReferenceWithXpathLookup | Reference a parent element as prefix - child locator directly added as xpath | N/A
+| ParentReferenceWithContainsAttribute | Reference a parent element as prefix - child locator built with contains attribute | N/A
+| ParentReferenceWithType | Reference a parent element as prefix - child is simply an element type | N/A
+| ParentReferenceWithAttribute | Reference a parent element as prefix - child locator built with attribute | //div[@class="inventory_list"]//div[@class="inventory_item"]
+| ParentReferenceWithText | Reference a parent element as prefix - child locator built with expected text | N/A
+| XPathLookup | direct xpath lookup | N/A
+| WithAttribute | built with attribute | //select[@data-test="product_sort_container"]
+| WithText | built with expected text | N/A
+| WithContainsAttribute | built with contains attribute | N/A
+| SelectFromGroupByCSSProperty | References an element group and RF keyword will run to derive correct element from the group based on CCS properties | N/A
+
+
