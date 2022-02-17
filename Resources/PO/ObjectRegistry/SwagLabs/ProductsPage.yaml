@@ -46,5 +46,10 @@ ProductsPage_Objects:
     ElementType: div
     Attribute: class
     Name: inventory_item_price
+  InventoryAddToCart:
+    LocatorStrategy: ParentReferenceWithText
+    ParentReference: InventoryItem
+    ElementType: button
+    Text: Add to cart
 
 

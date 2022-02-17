@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation  SwagLabs Product Sort List
 
+Library         Dialogs
 Resource        _Resources.robot
 Suite Setup     Begin Suite
 Suite Teardown  Teardown Suite
@@ -42,3 +43,7 @@ Scenario: Change Sort List Option to last option Price High to Low
           >  PRICE (HIGH TO LOW)    SortProducts
       And the "InventoryItemPrices" should be sorted high to low numerical
 
+Scenario: Change Add Items to Basket
+    [Tags]  SwagLabs
+    Given the "Products" page is displayed for Default User
+     When user adds following number of products to basket:  3
