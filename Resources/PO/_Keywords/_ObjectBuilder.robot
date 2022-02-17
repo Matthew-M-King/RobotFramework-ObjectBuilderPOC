@@ -63,7 +63,18 @@ Build Locator: WithContainsAttribute
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
     ${attribute}            <-   ${properties.Attribute}
     ${name}                 <-   ${properties.Name}
-    Run Keyword And Return  <-  //${properties.ElementType}\[contains(@${attribute}, "${name}"]${extension}
+    Run Keyword And Return  <-  //${properties.ElementType}\[contains(@${attribute}, "${name}")]${extension}
+
+Build Locator: SelectFromGroupByCSSProperty
+    [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
+    ${group_reference}     <-   ${properties.GroupReference}
+    ${css_property_type}   <-   ${properties.CSSPropertyType}
+    ${group_locator}  Build Locator  ${group_reference}
+    ${group}  Get WebElements  ${group_locator}
+    FOR  ${element}  IN  @{group}
+        ${element_property}  Call Method  ${element}  value_of_css_property  ${css_property_type}
+        Return From Keyword If  "${element_property}"=="${properties.PropertyValue}"  ${element}
+    END
 
 Build Locators
     @{locators}  Create List

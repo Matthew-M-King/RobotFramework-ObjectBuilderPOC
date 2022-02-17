@@ -20,6 +20,9 @@ ${r:(.*)?} views elements of the current page
 ${r:(.*)?} selects ${position:(\d+|last)}${r:(st|nd|rd|th)?} "${target_list}" list option
     PO: List: Select Option At Position  ${target_list}  ${position}
 
+${r:(.*)?} clicks the "${button}" button
+    PO: Input: Await And Click Button  ${button}
+    
 ### THEN ###
 the current page should contain correct elements
     PO: Common: Assert Current Page Elements

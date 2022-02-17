@@ -24,3 +24,18 @@ MainPage_Objects:
     Attribute: class
     Name: button
     Text: null
+  GreenButton:
+    LocatorStrategy: SelectFromGroupByCSSProperty
+    GroupReference: MainButtons
+    CSSPropertyType: background-color
+    PropertyValue: rgba(93, 164, 35, 1)
+  BlueButton:
+    LocatorStrategy: SelectFromGroupByCSSProperty
+    GroupReference: MainButtons
+    CSSPropertyType: background-color
+    PropertyValue: rgba(43, 166, 203, 1)
+  RedButton:
+    LocatorStrategy: SelectFromGroupByCSSProperty
+    GroupReference: MainButtons
+    CSSPropertyType: background-color
+    PropertyValue: rgba(198, 15, 19, 1)
