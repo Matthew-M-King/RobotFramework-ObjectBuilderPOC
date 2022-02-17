@@ -32,3 +32,6 @@ elements on current page should contain correct values
 
 the "${table}" table should contain correct content
     PO: Table: Assert Table Content  ${table}
+
+the following option should be selected in list:
+    Register Table Keyword  PO: List: Assert Active Option  Option=value  List=target_element

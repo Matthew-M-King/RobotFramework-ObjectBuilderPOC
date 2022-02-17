@@ -4,43 +4,40 @@ ProductsPage_Objects:
     ElementType: select
     Attribute: data-test
     Name: product_sort_container
-    Assert: True
-    Text: null
+  SortProductsActiveOption:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: SortProducts
+    UseRelation: True
+    Relation: parent
+    RelationElementType: span
+    ElementType: span
+    Attribute: class
+    Name: active_option
   InventoryList:
     LocatorStrategy: WithAttribute
     ElementType: div
     Attribute: class
     Name: inventory_list
-    Assert: False
-    Text: null
   InventoryItem:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryList
     ElementType: div
     Attribute: class
     Name: inventory_item
-    Assert: False 
-    Text: null
   InventoryItemImage:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryItem
     ElementType: div
     Attribute: class
     Name: inventory_item_img
-    Assert: False 
-    Text: null
   InventoryItemImageLink:
     LocatorStrategy: ParentReferenceWithType
     ParentReference: InventoryItemImage
     ElementType: a
-    Assert: False 
-    Text: null
   InventoryItemName:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryItem
     ElementType: div
     Attribute: class
     Name: inventory_item_name
-    Assert: False 
-    Text: null
 

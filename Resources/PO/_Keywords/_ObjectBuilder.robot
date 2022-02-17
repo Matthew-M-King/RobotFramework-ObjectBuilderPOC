@@ -8,6 +8,7 @@ Build Locator
     ...   ParentReferenceWithXpathLookup
     ...   ParentReferenceWithType
     ...   ParentReferenceWithAttribute
+    ...   ParentReferenceWithRelationshipAxes
     ...   ParentReferenceWithText
     ...   XPathLookup
     ...   WithAttribute
@@ -39,31 +40,36 @@ Build Locator: ParentReference
 
 Build Locator: XPathLookUp
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
-    Run Keyword And Return  <-  ${properties.Xpath}
+    ${axes}  Build Locator: Add Relationship Axes  ${properties}  ${page}  ${extension}
+    Run Keyword And Return  <-  ${axes}${properties.Xpath}
 
 Build Locator: WithType
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
     ${type}        <-   ${properties.ElementType}
-    Run Keyword And Return  <-  //${type}
+    ${axes}  Build Locator: Add Relationship Axes  ${properties}  ${page}  ${extension}=${EMPTY}
+    Run Keyword And Return  <-  ${axes}//${type}
 
 Build Locator: WithAttribute
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
     ${attribute}   <-   ${properties.Attribute}
     ${name}        <-   ${properties.Name}
     ${type}        <-   ${properties.ElementType}
-    Run Keyword And Return  <-  //${type}\[@${attribute}="${name}"]${extension}
+    ${axes}  Build Locator: Add Relationship Axes  ${properties}  ${page}  ${extension}=${EMPTY}
+    Run Keyword And Return  <-  ${axes}//${type}\[@${attribute}="${name}"]${extension}
 
 Build Locator: WithText
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
     ${text}  <-  ${properties.Text}
     ${type}  <-  ${properties.ElementType}
-    Run Keyword And Return  <-  //${type}\[normalize-space()="${text}"]${extension}
+    ${axes}  Build Locator: Add Relationship Axes  ${properties}  ${page}  ${extension}=${EMPTY}
+    Run Keyword And Return  <-  ${axes}//${type}\[normalize-space()="${text}"]${extension}
 
 Build Locator: WithContainsAttribute
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
     ${attribute}            <-   ${properties.Attribute}
     ${name}                 <-   ${properties.Name}
-    Run Keyword And Return  <-  //${properties.ElementType}\[contains(@${attribute}, "${name}")]${extension}
+    ${axes}  Build Locator: Add Relationship Axes  ${properties}  ${page}  ${extension}=${EMPTY}
+    Run Keyword And Return  <-  ${axes}//${properties.ElementType}\[contains(@${attribute}, "${name}")]${extension}
 
 Build Locator: SelectFromGroupByCSSProperty
     [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
@@ -76,6 +82,15 @@ Build Locator: SelectFromGroupByCSSProperty
         Return From Keyword If  "${element_property}"=="${properties.PropertyValue}"  ${element}
     END
 
+Build Locator: Add Relationship Axes
+    [Arguments]  ${properties}  ${page}  ${extension}=${EMPTY}
+    ${is_relation}   Is Key?  ${properties}  UseRelation
+    Return From Keyword If  not ${is_relation}   ${EMPTY}
+    Return From Keyword If  not ${properties.UseRelation}  ${EMPTY}
+    ${relation}  <-   ${properties.Relation}
+    ${type}  <-  ${properties.RelationElementType}
+    Run Keyword And Return  <-  //${relation}::${type}
+    
 Build Locators
     @{locators}  Create List
     ${page}  PO: Page: Get

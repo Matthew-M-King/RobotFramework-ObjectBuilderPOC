@@ -4,6 +4,7 @@ Documentation  Setup Tests
 Library   SeleniumLibrary
 Resource  Settings/_Settings.robot
 Resource  Utility/ShorthandUtility.robot
+Resource  Utility/TablesUtility.robot
 Resource  PO/_Keywords/Pages/LoginPagePO.robot
 
 *** Keywords ***
