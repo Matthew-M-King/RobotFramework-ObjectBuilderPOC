@@ -41,3 +41,6 @@ the "${target_elements}" should be sorted high to low ${value_type}
 
 the "${target_elements}" should be sorted low to high ${value_type}
     PO: Common: Assert Element Group Sort Order  ${target_elements}  LowToHigh${value_type}
+
+the "${target_element}" should display text: ${text}
+    PO: Common: Await And Assert Element Text  ${target_element}  ${text}

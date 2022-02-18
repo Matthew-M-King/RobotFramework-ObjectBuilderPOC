@@ -53,6 +53,12 @@ PO: Common: Assert Main Element Counts
     ${count}  <-  ${definitions}[${target_element}][ElementCountShouldBe]
     Page Should Contain Element  ${locator}  limit=${count}
 
+PO: Common: Await And Assert Element Text
+    [Arguments]  ${target_element}  ${text}
+    ${locator}  Build Locator  ${target_element}
+    Wait Until Element Is Visible  ${locator}
+    Element Text Should Be  ${locator}  ${text}
+
 PO: Common: Assert Element Group Sort Order  
     [Arguments]  ${target_elements}  ${order} 
     ${order}  Convert To Lower Case  ${order}

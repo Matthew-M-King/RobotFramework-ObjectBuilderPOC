@@ -51,5 +51,10 @@ ProductsPage_Objects:
     ParentReference: InventoryItem
     ElementType: button
     Text: Add to cart
+  ShoppingCart:
+    LocatorStrategy: WithAttribute
+    ElementType: span
+    Attribute: class
+    Name: shopping_cart_badge
 
 
