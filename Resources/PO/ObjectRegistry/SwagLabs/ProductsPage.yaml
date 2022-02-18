@@ -40,6 +40,12 @@ ProductsPage_Objects:
     ElementType: div
     Attribute: class
     Name: inventory_item_name
+  InventoryItemDescriptions:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: InventoryItem
+    ElementType: div
+    Attribute: class
+    Name: inventory_item_desc
   InventoryItemPrices:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryItem
@@ -51,6 +57,11 @@ ProductsPage_Objects:
     ParentReference: InventoryItem
     ElementType: button
     Text: Add to cart
+  ShoppingCartLink:
+    LocatorStrategy: WithAttribute
+    ElementType: a
+    Attribute: class
+    Name: shopping_cart_link
   ShoppingCart:
     LocatorStrategy: WithAttribute
     ElementType: span

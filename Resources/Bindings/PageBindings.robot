@@ -22,7 +22,10 @@ ${r:(.*)?} selects ${position:(\d+|last)}${r:(st|nd|rd|th)?} "${target_list}" li
 
 ${r:(.*)?} clicks the "${button}" button
     PO: Input: Await And Click Button  ${button}
-    
+
+${r:(.*)?} clicks the "${link}" link
+    PO: Input: Await And Click Link  ${link}
+
 ### THEN ###
 the current page should contain correct elements
     PO: Common: Assert Current Page Elements
@@ -44,3 +47,6 @@ the "${target_elements}" should be sorted low to high ${value_type}
 
 the "${target_element}" should display text: ${text}
     PO: Common: Await And Assert Element Text  ${target_element}  ${text}
+
+the page should display following number of "${target_element}": ${amount}
+    PO: Common: Await And Assert X Number Of Elements  ${target_element}  ${amount}

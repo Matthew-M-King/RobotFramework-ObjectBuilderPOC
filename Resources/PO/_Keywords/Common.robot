@@ -59,6 +59,12 @@ PO: Common: Await And Assert Element Text
     Wait Until Element Is Visible  ${locator}
     Element Text Should Be  ${locator}  ${text}
 
+PO: Common: Await And Assert X Number Of Elements
+    [Arguments]  ${target_element}  ${count}
+    ${locator}  Build Locator  ${target_element}
+    Wait Until Element Is Visible  ${locator}
+    Page Should Contain Element  ${locator}  limit=${count}
+
 PO: Common: Assert Element Group Sort Order  
     [Arguments]  ${target_elements}  ${order} 
     ${order}  Convert To Lower Case  ${order}

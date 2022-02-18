@@ -4,24 +4,25 @@ Documentation  SwagLabs Website Tests
 Library         Dialogs
 Resource        _Resources.robot
 Suite Setup     Begin Suite
+Test Setup      Begin Web Test
 Suite Teardown  Teardown Suite
 
 *** Test Cases ***
-Scenario: Assert Login Page
+Scenario: Assert Login Page Elements
     [Tags]  SwagLabs
     Given the "LoginPage" page is displayed
      When user views elements of the current page
      Then the current page should contain correct elements
       And elements on current page should contain correct values
     
-Scenario: Assert Products Page
+Scenario: Assert Products Page Elements
     [Tags]  SwagLabs
     Given the "ProductsPage" page is displayed
      When user views elements of the current page
      Then the current page should contain correct elements
       And elements on current page should contain correct values
 
-Scenario: Assert Products Page With Performance Glitched User
+Scenario: Assert Products Page Elements With Performance Glitched User
     [Tags]  Swaglabs
     Given the "ProductsPage" page is displayed for Glitched user
      When user views elements of the current page
@@ -69,3 +70,10 @@ Scenario: Add Items to Shopping Cart
     Given the "ProductsPage" page is displayed for Default User
      When user adds following number of products to basket: 3
      Then the "ShoppingCart" should display text: 3
+
+Scenario: Review Shopping Cart After Adding Items
+    Given the "ProductsPage" page is displayed for Default User
+     When user adds following number of products to basket: 3
+      And clicks the "ShoppingCartLink" link
+     Then the page should display following number of "CartItems": 3
+      And the shopping cart should contain correct products

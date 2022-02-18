@@ -10,13 +10,17 @@ Resource  PO/_Keywords/Pages/LoginPagePO.robot
 *** Keywords ***
 Begin Suite
     ${options}  Configure Browser
-   
     Open Browser  ${SiteUrls.${target_app}}  ${browser}  options=${options}
     Maximize Browser Window
 
 Begin Suite With ${user_type} User
     Begin Suite
     Login App  ${user_type}
+
+Begin Web Test
+    Delete All Cookies
+    Delete Storage
+    Reload Page
     
 Teardown Suite
     Close All Browsers
@@ -44,3 +48,12 @@ Configure Browser
         Call Method  ${options}  add_argument  --log-level\=1
     END
     [Return]  ${options}
+
+Delete Storage
+    [Documentation]    Deletes browser's localStorage and sessionStorage.
+    ...    You should reload page or go to another URL after executing this keyword.
+    Execute JavaScript
+    ...    if (window !== null) {
+    ...    if (window.sessionStorage !== null) { window.sessionStorage.clear(); }
+    ...    if (window.localStorage !== null) { window.localStorage.clear(); }
+    ...    }

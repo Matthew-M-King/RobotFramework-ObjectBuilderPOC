@@ -5,5 +5,6 @@ UrlsToPages:
   SwagLabs:
     https://www.saucedemo.com/: LoginPage
     https://www.saucedemo.com/inventory.html: ProductsPage
+    https://www.saucedemo.com/cart.html: ShoppingCartPage
   ChallengingDom: 
     http://the-internet.herokuapp.com/challenging_dom: MainPage

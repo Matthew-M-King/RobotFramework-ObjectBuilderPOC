@@ -17,6 +17,12 @@ PO: Input: Await And Click Button
     Wait Until Element Is Visible  ${locator}
     Click Button  ${locator}
 
+PO: Input: Await And Click Link
+    [Arguments]  ${target_element}
+    ${locator}  Build Locator  ${target_element}
+    Wait Until Element Is Visible  ${locator}
+    Click Link  ${locator}
+
 PO: Input: Await And Click X Number Of Buttons
     [Arguments]  ${target_elements}  ${amount}
     ${locator}  Build Locator  ${target_elements}

@@ -1,0 +1,35 @@
+ShoppingCartPage_Objects:
+  Title:
+    LocatorStrategy: WithAttribute
+    ElementType: span
+    Attribute: class
+    Name: title
+  CartList:
+    LocatorStrategy: WithAttribute
+    ElementType: div
+    Attribute: class
+    Name: cart_list
+  CartItems:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: CartList
+    ElementType: div
+    Attribute: class
+    Name: cart_item
+  CartItemNames:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: CartItems
+    ElementType: div
+    Attribute: class
+    Name: inventory_item_name
+  CartItemDescriptions:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: CartItems
+    ElementType: div
+    Attribute: class
+    Name: inventory_item_desc
+  CartItemPrices:
+    LocatorStrategy: ParentReferenceWithAttribute
+    ParentReference: CartItems
+    ElementType: div
+    Attribute: class
+    Name: inventory_item_price

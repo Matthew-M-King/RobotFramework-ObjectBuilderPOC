@@ -6,5 +6,5 @@ Variables  AppRegistry.py  ${target_app}
 *** Variables ***
 ${browser}               Chrome
 ${target_app}            SwagLabs
-${headless}              ${TRUE}
+${headless}              ${FALSE}
 ${current_login_user}
