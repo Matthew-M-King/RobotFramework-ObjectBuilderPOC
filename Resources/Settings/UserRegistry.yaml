@@ -12,3 +12,18 @@ UserLogins:
     Glitched:
       UserName: performance_glitch_user
       Password: secret_sauce 
+    InvalidUser:
+      UserName: invalid
+      Password: secret_sauce
+    InvalidPass:
+      UserName: standard_user
+      Password: secret_soup
+    EmptyUser:
+      UserName: ""
+      Password: secret_sauce
+    EmptyPass:
+      UserName: standard_user
+      Password: ""
+    EmptyAll:
+      UserName: ""
+      Password: ""

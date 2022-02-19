@@ -33,3 +33,9 @@ ShoppingCartPage_Objects:
     ElementType: div
     Attribute: class
     Name: inventory_item_price
+  RemoveButtons:
+    LocatorStrategy: ParentReferenceWithContainsAttribute
+    ParentReference: CartItems
+    ElementType: button
+    Attribute: data-test
+    Name: remove-sauce-labs

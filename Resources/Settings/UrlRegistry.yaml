@@ -3,8 +3,8 @@ SiteUrls:
   SwagLabs: https://www.saucedemo.com/
 UrlsToPages:
   SwagLabs:
-    https://www.saucedemo.com/: LoginPage
-    https://www.saucedemo.com/inventory.html: ProductsPage
-    https://www.saucedemo.com/cart.html: ShoppingCartPage
+    LoginPage: https://www.saucedemo.com/
+    ProductsPage: https://www.saucedemo.com/inventory.html
+    ShoppingCartPage: https://www.saucedemo.com/cart.html
   ChallengingDom: 
-    http://the-internet.herokuapp.com/challenging_dom: MainPage
+    MainPage: http://the-internet.herokuapp.com/challenging_dom

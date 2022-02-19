@@ -16,6 +16,9 @@ ${r:(.*)?} views elements of the current page
     ${current_page}  PO: Page: Get
     ${locators}  Build Locators
     Set Test Variable  ${${current_page}_current_page_locators}  ${locators}
+
+${r:(.*)?} enters "${login_type}" login details
+    Login App  ${login_type}
     
 ${r:(.*)?} selects ${position:(\d+|last)}${r:(st|nd|rd|th)?} "${target_list}" list option
     PO: List: Select Option At Position  ${target_list}  ${position}
@@ -23,7 +26,7 @@ ${r:(.*)?} selects ${position:(\d+|last)}${r:(st|nd|rd|th)?} "${target_list}" li
 ${r:(.*)?} clicks the "${button}" button
     PO: Input: Await And Click Button  ${button}
 
-${r:(.*)?} clicks the "${link}" link
+${r:(.*)?} ${r:(has )?}click${r:(s|ed)?} the "${link}" link
     PO: Input: Await And Click Link  ${link}
 
 ### THEN ###

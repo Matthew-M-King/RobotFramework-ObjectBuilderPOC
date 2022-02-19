@@ -7,13 +7,15 @@ http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#get
 app1 = {
     'default_page': 'LoginPage',
     'dynamic_url_contains': 'inventory-item',
-    'dynamic_page_name': 'ProductPage'
+    'dynamic_page_name': 'ProductPage',
+    'environment': 'Web'
     }
 
 app2 = {
     'default_page': 'MainPage',
     'dynamic_url_contains': None,
-    'dynamic_page_name': None
+    'dynamic_page_name': None,
+    'environment': 'Web'
     }
 
 

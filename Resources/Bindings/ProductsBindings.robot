@@ -4,8 +4,7 @@ Resource  ../PO/_Keywords/Page.robot
 Resource  ../PO/_Keywords/Table.robot
 
 *** Keywords ***
-### WHEN ###
-user adds following number of products to basket: ${amount}  
+${r:(.*)?} ${r:(has|adds)?} following number of products ${r:(in|to)?} basket: ${amount}  
     PO: Input: Await And Click X Number Of Buttons   InventoryAddToCart  ${amount}
     
     ${product_names}    PO: Common: Get Texts  InventoryItemName  
@@ -22,6 +21,9 @@ user adds following number of products to basket: ${amount}
     ...  Descriptions=${current_product_descs}
 
     Set Test Variable  ${current_shopping_cart}
+
+customer removes the following amount of products from cart: ${amount}
+    PO: Input: Await And Click X Number Of Buttons  RemoveButtons  ${amount}
 
 ### THEN ###
 the shopping cart should contain correct products
