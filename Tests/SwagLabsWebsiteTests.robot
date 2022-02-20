@@ -34,19 +34,19 @@ Scenario: Attempt Login With Locked User
 
 Scenario: Assert Login Page Elements
     [Tags]  SwagLabs
-    Assert Page Elements  LoginPage  Default
+    Assert Page Content  LoginPage  Default
     
 Scenario: Assert Products Page Elements
     [Tags]  SwagLabs
-    Assert Page Elements  ProductsPage  Default
+    Assert Page Content  ProductsPage  Default
 
 Scenario: Assert Products Page Elements With Performance Glitched User
     [Tags]  Swaglabs
-    Assert Page Elements  ProductsPage  Glitched
+    Assert Page Content  ProductsPage  Glitched
 
 Scenario: Assert Products Page Elements With Problem User
     [Tags]  Swaglabs
-    Assert Page Elements  ProductsPage  Problem
+    Assert Page Content  ProductsPage  Problem
 
 Scenario: No Access To Products Page When Not Logged In 
     [Tags]  Swaglabs
@@ -125,9 +125,8 @@ Login Validation
      When customer enters "${login_type}" login details 
      Then page should contain  ${msg}
 
-Assert Page Elements
+Assert Page Content
     [Arguments]  ${page}  ${login_type}
     Given the "${page}" page is displayed for ${login_type} user
      When user views elements of the current page
-     Then the current page should contain correct elements
-      And elements on current page should contain correct values
+     Then page displays correct content

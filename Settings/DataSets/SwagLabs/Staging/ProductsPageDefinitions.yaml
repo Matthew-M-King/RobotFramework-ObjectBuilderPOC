@@ -1,6 +1,5 @@
 ProductsPage_Definitions:
   InventoryItemName:
-    ElementGroup: True
     ElementCountShouldBe: 6
     EachInGroupShouldContain:
       - Sauce Labs Backpack
@@ -10,10 +9,9 @@ ProductsPage_Definitions:
       - Sauce Labs Onesie
       - Test.allTheThings() T-Shirt (Red)
   InventoryItemImageLink:
-    ElementGroup: True
     ElementCountShouldBe: 6
   InventoryItemImages:
-    ElementGroup: True
+    ElementCountShouldBe: 6
     ImageGroupAttributes:
       BackPack:
         DefaultOrder: 0

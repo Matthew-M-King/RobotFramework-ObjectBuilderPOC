@@ -1,4 +1,5 @@
 *** Settings ***
+Resource  ../PO/_Keywords/_AssertDefinitions.robot
 Resource  ../PO/_Keywords/List.robot
 Resource  ../PO/_Keywords/Page.robot
 Resource  ../PO/_Keywords/Table.robot
@@ -33,14 +34,8 @@ ${r:(.*)?} moves to the "${page}"
     PO: Page: Navigate To  ${page}  perform_login=${FALSE}
 
 ### THEN ###
-the current page should contain correct elements
-    PO: Common: Assert Current Page Elements
-    
-elements on current page should contain correct values
-    PO: Common: Locators Should Contain Values
-
-the "${table}" table should contain correct content
-    PO: Table: Assert Table Content  ${table}
+page displays correct content
+    PO: Assert Definitions
 
 the following option should be selected in list:
     Register Table Keyword  PO: List: Assert Active Option  Option=value  List=target_element

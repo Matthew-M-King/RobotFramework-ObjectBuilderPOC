@@ -10,5 +10,4 @@ Scenario: Assert Challenging DOM Elements
     [Tags]  ChallengingDom
     Given the "MainPage" page is displayed
      When user views elements of the current page
-     Then the current page should contain correct elements
-      And the "MainTable" table should contain correct content
+     Then page displays correct content

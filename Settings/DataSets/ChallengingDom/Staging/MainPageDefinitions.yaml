@@ -1,7 +1,7 @@
 MainPage_Definitions:
   MainTable:
     ElementCountShouldBe: 1
-    TableContent:
+    TableContentShouldBe:
       Columns:
         Col1:
           ColumnNo: 1
