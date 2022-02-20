@@ -140,7 +140,7 @@ URL's are registered at the App -> Environment level within a Dataset, because o
 
 | Property | Description |
 | ----------- | ----------- |
-| SiteUrls | Takes a set of target app names as key and main url as values |
+| BaseUrl | Takes a set of target app names as key and main url as values |
 | UrlsToPages | Maps page urls to a page name, page names can be personal preference but will be referenced in further stages. |
 
 Each url key/value should be entered under target app name as below:
@@ -149,8 +149,9 @@ Each url key/value should be entered under target app name as below:
 BaseUrl:
   ExampleApp: https://www.example_app.com/
 UrlsToPages:
-  ExamplePage: https://www.example_app.com/example_page
-  AnotherExamplePage: https://www.example_app.com/hello_world.html
+  MainPage: BaseUrl
+  ExamplePage: example_page
+  AnotherExamplePage: hello_world.html
 ```
 
 ---
@@ -162,23 +163,22 @@ For registering new users. Add a login type such as __Default__, __Locked__, __I
 
 ```yaml
 UserLogins:
-  SwagLabs:
-    Default:
-      UserName: standard_user
-      Password: secret_sauce
-    Locked: 
-      UserName: locked_out_user
-      Password: secret_sauce
-    Problem:
-      UserName: problem_user
-      Password: secret_sauce
-    Glitched:
-      UserName: performance_glitch_user
-      Password: secret_sauce 
-  ExampleApp:
-    Default:
-      UserName: example_user
-      Password: example_password 
+  Default:
+    UserName: standard_user
+    Password: secret_sauce
+  Locked: 
+    UserName: locked_out_user
+    Password: secret_sauce
+  Problem:
+    UserName: problem_user
+    Password: secret_sauce
+  Glitched:
+    UserName: performance_glitch_user
+    Password: secret_sauce 
+ExampleApp:
+  Default:
+    UserName: example_user
+    Password: example_password 
 
 ```
 ---

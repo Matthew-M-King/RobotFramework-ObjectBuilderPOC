@@ -8,7 +8,8 @@ PO: Page: Get
     # Handle special case of dynamic pages
     IF  not ${is_dynamic_page} 
         FOR  ${page_name}  IN  @{UrlsToPages}
-            IF  "${UrlsToPages}[${page_name}]"=="${url}"
+            ${expected_url}  PO: Page: Get Page Url From Registry  ${page_name}
+            IF  "${expected_url}"=="${url}"
                 Return From Keyword  ${page_name}
             END
         END
@@ -52,4 +53,9 @@ PO: Page: IsPage?
 
 PO: Page: Get Page Url From Registry
     [Arguments]  ${page}
-    Run Keyword And Return  <-  ${UrlsToPages}[${page}]
+    IF  "${UrlsToPages}[${page}]"=="BaseUrl"
+        ${url}  <-  ${BaseUrl}
+    ELSE
+        ${url}  <-  ${BaseUrl}${UrlsToPages}[${page}]
+    END
+    Run Keyword And Return  <-  ${url}

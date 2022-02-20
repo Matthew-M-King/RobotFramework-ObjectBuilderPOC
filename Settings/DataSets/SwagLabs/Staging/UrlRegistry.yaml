@@ -1,5 +1,5 @@
 BaseUrl: https://www.saucedemo.com/
 UrlsToPages:
-    LoginPage: https://www.saucedemo.com/
-    ProductsPage: https://www.saucedemo.com/inventory.html
-    ShoppingCartPage: https://www.saucedemo.com/cart.html
+    LoginPage: BaseUrl
+    ProductsPage: inventory.html
+    ShoppingCartPage: cart.html

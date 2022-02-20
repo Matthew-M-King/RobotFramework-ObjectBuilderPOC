@@ -1,3 +1,3 @@
 BaseUrl: http://the-internet.herokuapp.com/challenging_dom
 UrlsToPages:
-    MainPage: http://the-internet.herokuapp.com/challenging_dom
+    MainPage: BaseUrl
