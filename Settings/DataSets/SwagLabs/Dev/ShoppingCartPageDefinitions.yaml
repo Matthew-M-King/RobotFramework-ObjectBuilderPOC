@@ -1,6 +1,6 @@
 ShoppingCartPage_Definitions:
   Title:
-    MultipleElements: False
+    ElementGroup: False
     ElementCountShouldBe: 1
     ShouldContain:
       - Your Cart

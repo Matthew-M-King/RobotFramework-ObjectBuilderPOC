@@ -2,15 +2,15 @@
 Documentation  Setup Tests
 
 Library   SeleniumLibrary
-Resource  Settings/_Settings.robot
-Resource  Utility/ShorthandUtility.robot
-Resource  Utility/TablesUtility.robot
-Resource  PO/_Keywords/Pages/LoginPagePO.robot
+Resource  ../Settings/_Settings.robot
+Resource  ../Resources/Utility/ShorthandUtility.robot
+Resource  ../Resources/Utility/TablesUtility.robot
+Resource  ../Resources/PO/_Keywords/Pages/LoginPagePO.robot
 
 *** Keywords ***
 Begin Suite
     ${options}  Configure Browser
-    Open Browser  ${SiteUrls.${target_app}}  ${browser}  options=${options}
+    Open Browser  ${BaseUrl}  ${browser}  options=${options}
     Maximize Browser Window
 
 Begin Suite With ${user_type} User

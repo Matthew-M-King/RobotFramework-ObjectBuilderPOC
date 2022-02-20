@@ -16,6 +16,8 @@
     - [Folder Structure](#folder-structure)
     - [YAML File Example](#yaml-file-example)
     - [Object Builder Locator Strategies](#object-builder-locator-strategies)
+  - [Definition Registry](#definition-registry)
+    - [Folder Structure](#folder-structure-1)
 
 ## Preface
 
@@ -27,21 +29,61 @@ enabling easy ability to add new page element locators and maintain existing loc
 Below attempts to illustrate the core file structure utilised when registering new apps, pages, objects and definitions
 
 ```
-└───Resources
-│   └───Settings
-│   │   │   AppRegistry.py
-│   │   │   UrlRegistry.yaml
-│   │   │   UserRegistry.yaml
+└───Settings
+│   │  _Settings.robot
+│   │  AppRegistry.py
 │   │
-│   └───PO
-│       └───DefinitionRegistry
-│       │   └───ChallengingDom
-│       │   │   │   MainPage.yaml 
-│       │   │   
-│       │   └───SwagLabs
-│       │       │   LoginPage.yaml
-│       │       │   ProductsPage.yaml
-│       │   
+│   └───DataSets
+│   │  │
+│   │  └───ChallengingDom
+│   │  │   │   
+│   │  │   └───Dev
+│   │  │   │   _Definitions.robot
+│   │  │   │   MainPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│   │  │   │
+│   │  │   └───Staging
+│   │  │   │   _Definitions.robot
+│   │  │   │   MainPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│   │  │   │
+│   │  │   └───UAT
+│   │  │   │   _Definitions.robot
+│   │  │   │   MainPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│   │  │   │
+│   │  └───SwagLabs
+│   │  │   │
+│   │  │   └───Dev
+│   │  │   │   _Definitions.robot
+│   │  │   │   LoginPageDefinitions.yaml
+│   │  │   │   ProductsPageDefinitions.yaml
+│   │  │   │   ShoppingCartPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│   │  │   │
+│   │  │   └───Staging
+│   │  │   │   _Definitions.robot
+│   │  │   │   LoginPageDefinitions.yaml
+│   │  │   │   ProductsPageDefinitions.yaml
+│   │  │   │   ShoppingCartPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│   │  │   │
+│   │  │   └───UAT
+│   │  │   │   _Definitions.robot
+│   │  │   │   LoginPageDefinitions.yaml
+│   │  │   │   ProductsPageDefinitions.yaml
+│   │  │   │   ShoppingCartPageDefinitions.yaml
+│   │  │   │   UrlRegistry.yaml
+│   │  │   │   UserRegistry.yaml
+│
+└───Resources
+│   │
+│   └───PO   
 │       └───ObjectRegistry
 │       │   └───ChallengingDom
 │       │   │   │   MainPage.yaml 
@@ -75,7 +117,7 @@ Below attempts to illustrate the core file structure utilised when registering n
 
 In the below example, "ExampleApp" in get_variables() is the ${target_app} this variable can be set at command line e.g. robot -d reports -v target_app:ExampleApp -t "My Test Case" .
 
-```
+```python
 app3 = {
     'default_page': 'MainPage',
     'dynamic_url_contains': None,
@@ -92,7 +134,9 @@ def get_variables(arg):
 ```
 ---
 ## Register Urls
-`\\Settings\UrlRegistry.yaml.py`
+`\\Settings\DataSets\{target_app}\{environment}\UrlRegistry.yaml`
+
+URL's are registered at the App -> Environment level within a Dataset, because of this, it is important that the ${target_app} and ${environment} variables match with the folder structure.
 
 | Property | Description |
 | ----------- | ----------- |
@@ -101,30 +145,22 @@ def get_variables(arg):
 
 Each url key/value should be entered under target app name as below:
 
-```
-SiteUrls:
-  ChallengingDom: http://the-internet.herokuapp.com/challenging_dom
-  SwagLabs: https://www.saucedemo.com/
+```yaml
+BaseUrl:
   ExampleApp: https://www.example_app.com/
 UrlsToPages:
-  SwagLabs:
-    https://www.saucedemo.com/: LoginPage
-    https://www.saucedemo.com/inventory.html: ProductsPage
-  ChallengingDom: 
-    http://the-internet.herokuapp.com/challenging_dom: MainPage
-  ExampleApp:
-    https://www.example_app.com/example_page: ExamplePage
-    https://www.example_app.com/hello_world.html: AnotherExamplePage
+  ExamplePage: https://www.example_app.com/example_page
+  AnotherExamplePage: https://www.example_app.com/hello_world.html
 ```
 
 ---
 
 ## Register Users
-`\\Settings\UserRegistry.yaml`
+`\\Settings\DataSets\{target_app}\{environment}\UserRegistry.yaml`
 
-For registering new users - first add the target app under __UserLogins__ e.g. __ExampleApp:__ Now under the target app, add a login type such as __Default__, __Locked__, __Invalid__ etc. The user names and passwords will go under the user types as per the example below.
+For registering new users. Add a login type such as __Default__, __Locked__, __Invalid__ etc. The user names and passwords will go under the user types as per the example below.
 
-```
+```yaml
 UserLogins:
   SwagLabs:
     Default:
@@ -156,13 +192,14 @@ The contents of the file will reference yaml variable files for element definiti
 
 The file content would look similar to this:
 
-```
+```robotframework
 *** Settings ***
 Variables  ../ObjectRegistry/${target_app}/ExamplePage.yaml
 Variables  ../DefinitionRegistry/${target_app}/ExamplePage.yaml
 ```
 ---
 ## Object Registry
+The Object Registry is a repository containing yaml files, each yaml file is based on a page of the app and contains the page object element locators defined in various forms.
 
 ### Folder Structure
 
@@ -174,22 +211,17 @@ Therefore continuing with the example we would add a new folder __ExampleApp__ u
 
 ### YAML File Example
 
-```
+```yaml
 LoginPage_Objects:
   Username:
     LocatorStrategy: XPathLookup
     Xpath: //input[@data-test="username"]
-    Assert: True
   Password:
     LocatorStrategy: WithAttribute
     ElementType: input
     Attribute: data-test
     Name: password
-    Text: null
-    Assert: True
 ```
-
-
 
 ### Object Builder Locator Strategies
 
@@ -206,4 +238,66 @@ LoginPage_Objects:
 | WithContainsAttribute | built with contains attribute 
 | SelectFromGroupByCSSProperty | References an element group and RF keyword will run to derive correct element from the group based on CCS properties 
 
+---
+## Definition Registry
+The definition registry yaml files aim to describe the behaviour and properties/attributes of locators on a page with the intention to guide the automation in asserting page specifics in a simple, maintainable manner. The definition files are stored in datasets allowing plenty of room for scalability and enhancements.
 
+### Folder Structure
+
+When adding a Definition Registry yaml file, the directory structure is important. The definition files are stored in datasets which can differ at an environment level  
+
+`\\Settings\DataSets\{target_app}\{environment}\ExamplePageDefinitions.yaml`
+
+`\\Settings\DataSets\{target_app}\{environment}\AnotherExamplePageDefinitions.yaml`
+
+Each of the environment directories will contain a _Definitions.robot file to import the variables from the yaml's
+
+`\\Settings\DataSets\{target_app}\{environment}\_Definitions.robot`
+
+```robotframework
+*** Settings ***
+Variables  ExamplePageDefinitions.yaml
+Variables  AnotherExamplePageDefinitions.yaml
+```
+
+
+```yaml
+LoginPage_Definitions:
+  Username:
+    ElementCountShouldBe: 1
+  Password:
+    ElementCountShouldBe: 1
+  LoginButton:
+    ElementCountShouldBe: 1
+  LoginCredentials:
+    ElementCountShouldBe: 1
+    ShouldContain:
+      - standard_user
+      - locked_out_user
+      - problem_user
+      - performance_glitch_user
+  AcceptedUsernamesTitle:
+    ElementCountShouldBe: 1
+    ShouldContain:
+      - Accepted usernames are
+```
+
+Note that locator attribute should be named the same as the object in the ObjectRegistry
+
+__ObjectRegistry__
+
+```yaml
+LoginPage_Objects:
+  Username:
+    LocatorStrategy: XPathLookup
+    Xpath: //input[@data-test="username"]
+    Assert: True
+```
+
+__DefinitionRegistry__
+
+```yaml
+LoginPage_Definitions:
+  Username:
+    ElementCountShouldBe: 1
+```

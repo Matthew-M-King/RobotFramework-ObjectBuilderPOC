@@ -24,7 +24,7 @@ ProductsPage_Objects:
     ElementType: div
     Attribute: class
     Name: inventory_item
-  InventoryItemImage:
+  InventoryItemImages:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryItem
     ElementType: div
@@ -32,7 +32,7 @@ ProductsPage_Objects:
     Name: inventory_item_img
   InventoryItemImageLink:
     LocatorStrategy: ParentReferenceWithType
-    ParentReference: InventoryItemImage
+    ParentReference: InventoryItemImages
     ElementType: a
   InventoryItemName:
     LocatorStrategy: ParentReferenceWithAttribute

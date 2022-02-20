@@ -29,6 +29,9 @@ ${r:(.*)?} clicks the "${button}" button
 ${r:(.*)?} ${r:(has )?}click${r:(s|ed)?} the "${link}" link
     PO: Input: Await And Click Link  ${link}
 
+${r:(.*)?} moves to the "${page}"
+    PO: Page: Navigate To  ${page}  perform_login=${FALSE}
+
 ### THEN ###
 the current page should contain correct elements
     PO: Common: Assert Current Page Elements

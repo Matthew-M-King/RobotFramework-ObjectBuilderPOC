@@ -9,55 +9,56 @@ Suite Teardown  Teardown Suite
 
 *** Test Cases ***
 Scenario: Attempt Login With Invalid Username
-    Given the "LoginPage" page is displayed
-     When customer enters "InvalidUser" login details 
-     Then page should contain  Username and password do not match any user in this service
+    [Tags]  SwagLabs
+    Login Validation  InvalidUser  Username and password do not match any user in this service
 
 Scenario: Attempt Login With Invalid Password
-    Given the "LoginPage" page is displayed
-     When customer enters "InvalidPass" login details 
-     Then page should contain  Username and password do not match any user in this service
-
+    [Tags]  SwagLabs
+    Login Validation  InvalidPass  Username and password do not match any user in this service
+    
 Scenario: Attempt Login With Empty Username
-    Given the "LoginPage" page is displayed
-     When customer enters "EmptyUser" login details 
-     Then page should contain  Username is required
+    [Tags]  SwagLabs
+    Login Validation  EmptyUser    Username is required
 
 Scenario: Attempt Login With Empty Password
-    Given the "LoginPage" page is displayed
-     When customer enters "EmptyPass" login details 
-     Then page should contain  Password is required
+    [Tags]  SwagLabs
+    Login Validation  EmptyPass    Password is required
 
 Scenario: Attempt Login With Empty UserName and Password
-    Given the "LoginPage" page is displayed
-     When customer enters "EmptyAll" login details 
-     Then page should contain  Username is required
-
+    [Tags]  SwagLabs
+    Login Validation  EmptyAll     Username is required
+    
 Scenario: Attempt Login With Locked User
-    Given the "LoginPage" page is displayed
-     When customer enters "Locked" login details 
-     Then page should contain  Sorry, this user has been locked out.
+    [Tags]  SwagLabs
+    Login Validation  Locked       Sorry, this user has been locked out.
 
 Scenario: Assert Login Page Elements
     [Tags]  SwagLabs
-    Given the "LoginPage" page is displayed
-     When user views elements of the current page
-     Then the current page should contain correct elements
-      And elements on current page should contain correct values
+    Assert Page Elements  LoginPage  Default
     
 Scenario: Assert Products Page Elements
     [Tags]  SwagLabs
-    Given the "ProductsPage" page is displayed
-     When user views elements of the current page
-     Then the current page should contain correct elements
-      And elements on current page should contain correct values
+    Assert Page Elements  ProductsPage  Default
 
 Scenario: Assert Products Page Elements With Performance Glitched User
     [Tags]  Swaglabs
-    Given the "ProductsPage" page is displayed for Glitched user
-     When user views elements of the current page
-     Then the current page should contain correct elements
-      And elements on current page should contain correct values
+    Assert Page Elements  ProductsPage  Glitched
+
+Scenario: Assert Products Page Elements With Problem User
+    [Tags]  Swaglabs
+    Assert Page Elements  ProductsPage  Problem
+
+Scenario: No Access To Products Page When Not Logged In 
+    [Tags]  Swaglabs
+    Given the "LoginPage" page is displayed
+     When customer moves to the "ProductsPage"
+     Then page should contain  You can only access '/inventory.html' when you are logged in.
+
+Scenario: No Access To Cart Page When Not Logged In
+    [Tags]  Swaglabs
+    Given the "LoginPage" page is displayed
+     When customer moves to the "ShoppingCartPage"
+     Then page should contain  You can only access '/cart.html' when you are logged in.
 
 Scenario: Change Sort List Option to 1st option Name A to Z
     [Tags]  SwagLabs
@@ -116,3 +117,17 @@ Scenario: Remove Items From Shopping Cart
       And customer has clicked the "ShoppingCartLink" link
      When customer removes the following amount of products from cart: 2
      Then the page should display following number of "CartItems": 1
+
+*** Keywords ***
+Login Validation
+    [Arguments]  ${login_type}  ${msg}
+    Given the "LoginPage" page is displayed
+     When customer enters "${login_type}" login details 
+     Then page should contain  ${msg}
+
+Assert Page Elements
+    [Arguments]  ${page}  ${login_type}
+    Given the "${page}" page is displayed for ${login_type} user
+     When user views elements of the current page
+     Then the current page should contain correct elements
+      And elements on current page should contain correct values

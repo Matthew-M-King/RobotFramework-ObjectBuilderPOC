@@ -27,6 +27,7 @@ PO: Common: Locators Should Contain Values
     ${dicts}  <-  ${${page}_Definitions}
     FOR  ${target_element}  IN  @{dicts.keys()}
         Key->  ${dicts}[${target_element}]   ShouldContain  PO: Common: Locator Should Contain Value  ${target_element}
+        Key->  ${dicts}[${target_element}]   EachInGroupShouldContain  PO: Common: Each In Group Should Contain Value  ${target_element}
     END
 
 PO: Common: Locator Should Contain Value
@@ -37,6 +38,10 @@ PO: Common: Locator Should Contain Value
     FOR  ${text}  IN  @{expected_text}
         Should Contain  ${actual_text}  ${text}
     END
+
+PO: Common: Each In Group Should Contain Value
+    [Arguments]  ${target_group}
+    Fail  Not Implemented
 
 PO: Common: Assert Current Page Elements
     ${current_page}  PO: Page: Get

@@ -7,8 +7,8 @@ PO: Page: Get
     ${is_dynamic_page}  Run Keyword And Return Status  Should Contain  ${url}  ${dynamic_url_contains}
     # Handle special case of dynamic pages
     IF  not ${is_dynamic_page} 
-        FOR  ${page_name}  IN  @{UrlsToPages.${target_app}}
-            IF  "${UrlsToPages.${target_app}}[${page_name}]"=="${url}"
+        FOR  ${page_name}  IN  @{UrlsToPages}
+            IF  "${UrlsToPages}[${page_name}]"=="${url}"
                 Return From Keyword  ${page_name}
             END
         END
@@ -17,7 +17,7 @@ PO: Page: Get
     END
 
 PO: Page: Navigate To
-    [Arguments]  ${page}  ${user}=Default
+    [Arguments]  ${page}  ${user}=Default  ${perform_login}=${TRUE}
     ${actual_page}  PO: Page: Get
     ${is_page}  PO: Page: IsPage?  ${page}  ${actual_page}
 
@@ -35,10 +35,13 @@ PO: Page: Navigate To
     END
 
     IF  "${actual_page}"=="${default_page}" and "${page}"!="${default_page}"
-        Login App  ${user}
-        Set Suite Variable  ${current_login_user}  ${user}
-        ${actual_page}  PO: Page: Get
-        Return From Keyword If  ${is_page}
+        
+        IF  ${perform_login}
+            Login App  ${user}
+            Set Suite Variable  ${current_login_user}  ${user}
+            ${actual_page}  PO: Page: Get
+            Return From Keyword If  ${is_page}
+        END
         ${page_url}   PO: Page: Get Page Url From Registry  ${page}
         Go To  ${page_url}
     END
@@ -49,4 +52,4 @@ PO: Page: IsPage?
 
 PO: Page: Get Page Url From Registry
     [Arguments]  ${page}
-    Run Keyword And Return  <-  ${UrlsToPages.${target_app}}[${page}]
+    Run Keyword And Return  <-  ${UrlsToPages}[${page}]

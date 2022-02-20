@@ -1,0 +1,18 @@
+LoginPage_Definitions:
+  Username:
+    ElementCountShouldBe: 1
+  Password:
+    ElementCountShouldBe: 1
+  LoginButton:
+    ElementCountShouldBe: 1
+  LoginCredentials:
+    ElementCountShouldBe: 1
+    ShouldContain:
+      - standard_user
+      - locked_out_user
+      - problem_user
+      - performance_glitch_user
+  AcceptedUsernamesTitle:
+    ElementCountShouldBe: 1
+    ShouldContain:
+      - Accepted usernames are
