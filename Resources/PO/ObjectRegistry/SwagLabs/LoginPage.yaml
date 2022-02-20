@@ -2,30 +2,22 @@ LoginPage_Objects:
   Username:
     LocatorStrategy: XPathLookup
     Xpath: //input[@data-test="username"]
-    Assert: True
   Password:
     LocatorStrategy: WithAttribute
     ElementType: input
     Attribute: data-test
     Name: password
-    Text: null
-    Assert: True
   LoginButton:
     LocatorStrategy: WithAttribute
     ElementType: input
     Attribute: data-test
     Name: login-button
-    Text: null
-    Assert: True
   LoginCredentials:
     LocatorStrategy: WithAttribute
     ElementType: div
     Attribute: id
     Name: login_credentials
-    Text: null
-    Assert: True
   AcceptedUsernamesTitle:
     LocatorStrategy: ParentReferenceWithType
     ParentReference: LoginCredentials
     ElementType: h4
-    Assert: True

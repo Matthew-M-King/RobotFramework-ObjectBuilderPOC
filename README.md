@@ -175,10 +175,6 @@ UserLogins:
   Glitched:
     UserName: performance_glitch_user
     Password: secret_sauce 
-ExampleApp:
-  Default:
-    UserName: example_user
-    Password: example_password 
 
 ```
 ---
@@ -195,7 +191,6 @@ The file content would look similar to this:
 ```robotframework
 *** Settings ***
 Variables  ../ObjectRegistry/${target_app}/ExamplePage.yaml
-Variables  ../DefinitionRegistry/${target_app}/ExamplePage.yaml
 ```
 ---
 ## Object Registry
@@ -291,7 +286,6 @@ LoginPage_Objects:
   Username:
     LocatorStrategy: XPathLookup
     Xpath: //input[@data-test="username"]
-    Assert: True
 ```
 
 __DefinitionRegistry__

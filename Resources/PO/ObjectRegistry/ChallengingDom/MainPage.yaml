@@ -4,26 +4,20 @@ MainPage_Objects:
     ElementType: div
     Attribute: id
     Name: content
-    Text: null
   MainTitle:
     LocatorStrategy: ParentReferenceWithType
     ParentReference: MainContent
     ElementType: h3
-    Assert: False 
-    Text: null
   MainTable:
     LocatorStrategy: ParentReferenceWithType
     ParentReference: MainContent
-    ElementType: table
-    Assert: False 
-    Text: null
+    ElementType: table 
   MainButtons:
     LocatorStrategy: ParentReferenceWithContainsAttribute
     ParentReference: MainContent
     ElementType: a
     Attribute: class
     Name: button
-    Text: null
   GreenButton:
     LocatorStrategy: SelectFromGroupByCSSProperty
     GroupReference: MainButtons
