@@ -92,6 +92,7 @@ Build Locator: Add Relationship Axes
     ${type}  <-  ${properties.RelationElementType}
     Run Keyword And Return  <-  //${relation}::${type}
     
+### INTERNAL ###
 Build Locators
     @{locators}  Create List
     ${page}  PO: Page: Get
@@ -103,3 +104,20 @@ Build Locators
         Append To List  ${locators}  ${locator_details}
     END
     [Return]  ${locators}
+
+Build Locator: Get Parent Target Element
+    [Arguments]  ${target_element}
+    ${page}  PO: Page: Get
+    ${dicts}  <-  ${${page}_Objects}
+    Run Keyword And Return  <-  ${dicts.${target_element}.ParentReference}
+
+Build Locator: Update Parent With Index
+    [Arguments]  ${target_element}  ${index}
+    ${target_parent_element}  Build Locator: Get Parent Target Element  ${target_element}
+    ${parent_locator}  Build Locator  ${target_parent_element}
+    ${locator}         Build Locator  ${target_element}
+    ${locator}         Replace String  ${locator}  ${parent_locator}  ${EMPTY}
+    
+    ${parent_locator}  <-   ${parent_locator}\[${index}]
+    Run Keyword And Return  <-   ${parent_locator}${locator}
+

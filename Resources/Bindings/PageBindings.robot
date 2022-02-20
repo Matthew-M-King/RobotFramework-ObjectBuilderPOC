@@ -35,7 +35,7 @@ ${r:(.*)?} moves to the "${page}"
 
 ### THEN ###
 page displays correct content
-    PO: Assert Definitions
+    PO: Definitions: Assert
 
 the following option should be selected in list:
     Register Table Keyword  PO: List: Assert Active Option  Option=value  List=target_element

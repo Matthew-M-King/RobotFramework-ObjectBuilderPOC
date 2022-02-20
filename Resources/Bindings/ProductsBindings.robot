@@ -7,7 +7,7 @@ Resource  ../PO/_Keywords/Table.robot
 ${r:(.*)?} ${r:(has|adds)?} following number of products ${r:(in|to)?} basket: ${amount}  
     PO: Input: Await And Click X Number Of Buttons   InventoryAddToCart  ${amount}
     
-    ${product_names}    PO: Common: Get Texts  InventoryItemName  
+    ${product_names}    PO: Common: Get Texts  InventoryItemNames  
     ${product_prices}   PO: Common: Get Texts  InventoryItemPrices
     ${product_descs}    PO: Common: Get Texts  InventoryItemDescriptions
 

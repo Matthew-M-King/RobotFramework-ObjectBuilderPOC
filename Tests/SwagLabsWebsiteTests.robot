@@ -67,7 +67,7 @@ Scenario: Change Sort List Option to 1st option Name A to Z
      Then the following option should be selected in list:
           ^  Option                 List 
           >  NAME (A TO Z)          SortProducts
-      And the "InventoryItemName" should be sorted low to high alphabetically
+      And the "InventoryItemNames" should be sorted low to high alphabetically
 
 Scenario: Change Sort List Option to 2nd option Name Z to A
     [Tags]  SwagLabs
@@ -76,7 +76,7 @@ Scenario: Change Sort List Option to 2nd option Name Z to A
      Then the following option should be selected in list:
           ^  Option                 List 
           >  NAME (Z TO A)          SortProducts
-      And the "InventoryItemName" should be sorted high to low alphabetically
+      And the "InventoryItemNames" should be sorted high to low alphabetically
 
 Scenario: Change Sort List Option to 3rd option Price High to Low
     [Tags]  SwagLabs

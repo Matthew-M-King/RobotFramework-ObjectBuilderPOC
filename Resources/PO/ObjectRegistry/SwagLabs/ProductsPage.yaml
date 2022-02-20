@@ -34,7 +34,7 @@ ProductsPage_Objects:
     LocatorStrategy: ParentReferenceWithType
     ParentReference: InventoryItemImages
     ElementType: a
-  InventoryItemName:
+  InventoryItemNames:
     LocatorStrategy: ParentReferenceWithAttribute
     ParentReference: InventoryItem
     ElementType: div
