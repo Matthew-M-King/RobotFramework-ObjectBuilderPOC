@@ -38,19 +38,19 @@ Below attempts to illustrate the core file structure utilised when registering n
 │   │  └───ChallengingDom
 │   │  │   │   
 │   │  │   └───Dev
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   MainPageDefinitions.yaml
 │   │  │   │   UrlRegistry.yaml
 │   │  │   │   UserRegistry.yaml
 │   │  │   │
 │   │  │   └───Staging
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   MainPageDefinitions.yaml
 │   │  │   │   UrlRegistry.yaml
 │   │  │   │   UserRegistry.yaml
 │   │  │   │
 │   │  │   └───UAT
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   MainPageDefinitions.yaml
 │   │  │   │   UrlRegistry.yaml
 │   │  │   │   UserRegistry.yaml
@@ -58,7 +58,7 @@ Below attempts to illustrate the core file structure utilised when registering n
 │   │  └───SwagLabs
 │   │  │   │
 │   │  │   └───Dev
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   LoginPageDefinitions.yaml
 │   │  │   │   ProductsPageDefinitions.yaml
 │   │  │   │   ShoppingCartPageDefinitions.yaml
@@ -66,7 +66,7 @@ Below attempts to illustrate the core file structure utilised when registering n
 │   │  │   │   UserRegistry.yaml
 │   │  │   │
 │   │  │   └───Staging
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   LoginPageDefinitions.yaml
 │   │  │   │   ProductsPageDefinitions.yaml
 │   │  │   │   ShoppingCartPageDefinitions.yaml
@@ -74,7 +74,7 @@ Below attempts to illustrate the core file structure utilised when registering n
 │   │  │   │   UserRegistry.yaml
 │   │  │   │
 │   │  │   └───UAT
-│   │  │   │   _Definitions.robot
+│   │  │   │   _DatasetRegistry.robot
 │   │  │   │   LoginPageDefinitions.yaml
 │   │  │   │   ProductsPageDefinitions.yaml
 │   │  │   │   ShoppingCartPageDefinitions.yaml
