@@ -1,2 +1,2 @@
 *** Settings ***
-Variables  ../ObjectRegistry/${target_app}/MainPage.yaml
+Variables       ../ObjectRegistry/${target_app}/MainPage.yaml

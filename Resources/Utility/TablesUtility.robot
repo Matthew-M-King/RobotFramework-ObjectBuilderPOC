@@ -1,16 +1,19 @@
 *** Settings ***
-Library  Collections
+Library     Collections
+
 
 *** Keywords ***
 Register Table Keyword
+    [Arguments]    ${keyword}    ${ignore_headers}=${FALSE}    ${table_number}=1    ${use_row_number}=${FALSE}
+    ...    ${named_argument_values}=&{EMPTY}    &{args_map}
     # ...    Registers provided keyword to be invoked for every row of a table that follows.
     # ...    This is in fact the only keyword to be called by the keyword preceding a table:
-    # ... 
-    # ...      When I add the following numbers
-    # ...            ^    num1    num2
-    # ...            >    -2      3
-    # ...            >    10      15
-    # ...            >    -1      -10
+    # ...
+    # ...    When I add the following numbers
+    # ...    ^    num1    num2
+    # ...    >    -2    3
+    # ...    >    10    15
+    # ...    >    -1    -10
     # ...
     # ...    In this case "following calculations are performed" should register a keyword that will make use of the table.
     # ...    You may also choose to ignore table headers and/or to use the table's row number as the
@@ -21,8 +24,6 @@ Register Table Keyword
     # ...    then this variable needs to be incremented in the acceptance keyword using it.
     # ...    ${named_argument_values} can specify values for specific arguments that will be used for all table rows.
     # ...    Works only when header ^ keyword is used. Parameter that is specified this way cannot be defined again in the table itself.
-    [Arguments]    ${keyword}    ${ignore_headers}=${FALSE}    ${table_number}=1    ${use_row_number}=${FALSE}
-    ...    ${named_argument_values}=&{EMPTY}    &{args_map}
     Set Test Variable    ${table_keyword}    ${keyword}
     Set Test Variable    ${table_arguments_names}    ${EMPTY}
     Set Test Variable    ${table_row_number}    1
@@ -59,9 +60,11 @@ Register Table Keyword
     [Arguments]    @{arguments_values}    &{kwargs}
     ${arguments_names}    Get Variable Value    ${table_arguments_names}    ${EMPTY}
     ${row_number}    Set Variable If    ${table_use_row_number}==${TRUE}    ${table_row_number}    ${EMPTY}
-    Run Keyword If    "${arguments_names}" == "${EMPTY}"
-    ...    Run Table Keyword With Plain Arguments    ${row_number}    @{arguments_values}    &{kwargs}
-    ...    ELSE    Run Table Keyword With Named Arguments    ${row_number}    ${arguments_names}    ${arguments_values}
+    IF    "${arguments_names}" == "${EMPTY}"
+        Run Table Keyword With Plain Arguments    ${row_number}    @{arguments_values}    &{kwargs}
+    ELSE
+        Run Table Keyword With Named Arguments    ${row_number}    ${arguments_names}    ${arguments_values}
+    END
     Set Test Variable    ${seeded_table_${table_number}_row${table_row_number}_values}    ${arguments_values}
     ${table_row_number}    Evaluate    ${table_row_number} + 1
     Set Test Variable    ${table_row_number}
@@ -69,13 +72,15 @@ Register Table Keyword
 Run Table Keyword With Named Arguments
     [Documentation]    Helper for the '>' keyword, pairing arguments with names to call the registered keyword with them.
     [Arguments]    ${row_number}    ${arguments_names}    ${arguments_values}
-    &{arg_value_pairs} =    Create Dictionary
+    &{arg_value_pairs}    Create Dictionary
     FOR    ${arg}    ${value}    IN ZIP    ${arguments_names}    ${arguments_values}
         Set To Dictionary    ${arg_value_pairs}    ${arg}    ${value}
     END
     FOR    ${key}    IN    @{table_named_argument_values}
         # Registered values cannot be used together with values from the table - enforce this to avoid potentially difficult to diagnose errors
-        List Should Not Contain Value    ${arguments_names}    ${key}
+        List Should Not Contain Value
+        ...    ${arguments_names}
+        ...    ${key}
         ...    Table keyword has registered a value for '${key}' argument, but that argument is also listed in the table - this is not supported, only one way of providing a value can be used.
         Set To Dictionary    ${arg_value_pairs}    ${key}    ${table_named_argument_values}[${key}]
     END

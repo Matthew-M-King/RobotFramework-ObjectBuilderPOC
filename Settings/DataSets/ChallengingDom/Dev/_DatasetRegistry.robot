@@ -1,4 +1,4 @@
 *** Settings ***
-Variables  MainPageDefinitions.yaml
-Variables  UrlRegistry.yaml
-Variables  UserRegistry.yaml
+Variables       MainPageDefinitions.yaml
+Variables       UrlRegistry.yaml
+Variables       UserRegistry.yaml

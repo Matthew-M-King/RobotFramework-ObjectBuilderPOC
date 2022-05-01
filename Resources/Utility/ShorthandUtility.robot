@@ -11,15 +11,15 @@
 Key->
     [Documentation]    Runs given keyword if dictionary key exists
     ...    ${example_id}    key->    ${example_id}    Get Default Example Id
-    [Arguments]    ${dict}   ${key}   ${keyword}    @{args}    &{kwargs}
-    ${is_key}  Run Keyword And Return Status   Dictionary Should Contain Key   ${dict}  ${key}
+    [Arguments]    ${dict}    ${key}    ${keyword}    @{args}    &{kwargs}
+    ${is_key}    Run Keyword And Return Status    Dictionary Should Contain Key    ${dict}    ${key}
     Return From Keyword If    not ${is_key}
     Run Keyword And Return    ${keyword}    @{args}    &{kwargs}
 
 Is Key?
     [Documentation]    Returns True if key found in dictionary
-    [Arguments]    ${dict}   ${key}
-    Run Keyword And Return  Run Keyword And Return Status   Dictionary Should Contain Key   ${dict}  ${key}
+    [Arguments]    ${dict}    ${key}
+    Run Keyword And Return    Run Keyword And Return Status    Dictionary Should Contain Key    ${dict}    ${key}
 
 ?>
     [Documentation]    Short-hand syntax for:    Run Keyword If    "${variable}"!="${EMPTY}"
@@ -28,16 +28,16 @@ Is Key?
     Return From Keyword If    "${variable}"=="${EMPTY}"
     Run Keyword And Return    ${keyword}    @{args}    &{kwargs}
 
-<- 
+<-
     [Documentation]    Shortened syntax for "Set Variable" - returns the argument.
     [Arguments]    ${value}
-    [Return]    ${value} 
+    [Return]    ${value}
 
 ->FOR
     [Documentation]    Provides simple facility to execute the same keyword for each item on a list.
     ...    The arg_mapping must be constructed like '->keyword_argument_name'.
     ...    Example:
-    ...    ->FOR  ${list_of_numbers}  ->message  Log To Console
+    ...    ->FOR    ${list_of_numbers}    ->message    Log To Console
     ...
     ...    This will call the "Log To Console" keyword, with each element of a list
     ...    obtained by the list_of_numbers call passed to this keyword as the message argument.
@@ -45,11 +45,13 @@ Is Key?
     ...    all the remaining arguments of a keyword can be passed to it as usual.
     [Arguments]    ${list}    ${arg_mapping}    ${keyword}    @{remaining_args}    &{remaining_kwargs}
     Should Start With    ${arg_mapping}    ->
-    ${arg_name}=    Get Substring    ${arg_mapping}    2
+    ${arg_name}    Get Substring    ${arg_mapping}    2
     FOR    ${item}    IN    @{list}
         Run Keyword    ${keyword}    @{remaining_args}    &{remaining_kwargs}    ${arg_name}=${item}
     END
 
 [_]
-    [Arguments]  ${list}
-    Run Keyword And Return    Evaluate    [item for sublist in $list for item in (sublist if isinstance(sublist, list) else [sublist])]
+    [Arguments]    ${list}
+    Run Keyword And Return
+    ...    Evaluate
+    ...    [item for sublist in $list for item in (sublist if isinstance(sublist, list) else [sublist])]
